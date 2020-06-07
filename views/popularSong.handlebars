@@ -1,0 +1,11 @@
+<h2>{{title}}</h2>
+
+{{#each data}}
+<article>
+  <h3 class = "song_added">{{this.song_name}} by {{this.song_artist}}, Genre: {{this.song_genre}}</h3>
+</article>
+
+{{else}}
+<h1>There are no songs that have been added yet</h1>
+<a href = "/createSong">Add a song here</a>
+{{/each}}

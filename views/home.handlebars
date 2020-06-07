@@ -1,0 +1,84 @@
+<div class = "home_title">
+  <h2>Recent Reviews</h2>
+
+  <div class = "search_div">
+    <input type = "text" id = "search_bar" size = "20" placeholder = "Search by album name here">
+  </div>
+
+</div>
+
+
+
+
+<ul id = "list_of_albums" style = "list-style-type:none;padding-left:0;">
+{{#each data}}
+<li id = "{{this.album_name}}">
+<article>
+  <h2 class = "title">{{this.album_name}}</h2> <i>{{this.year_released}}</i>
+  <hr>
+  <h3 class = "artist">By: {{this.artist}}</h3>
+  <h3 class = "genre">Genre: {{this.genre}}</h3>
+  <h3 class = "rating">Score: {{this.rating}}/100</h3>
+  <h3 class = "tracklist">Standout Tracks: {{this.standout_tracks}}</h3>
+  <div class = "content">
+    {{{this.review}}}
+  </div>
+  <h4 class = "review_info">Reviewed By: {{this.review_info.reviewer_name}}, Date: {{this.review_info.review_date}}, Email: {{this.review_info.reviewer_email}}</h4>
+</article>
+</li>
+
+{{else}}
+  <h1>There are no albums that have been reviewed yet</h1>
+  <a href = "/create">Write the first album Review here</a>
+{{/each}}
+</ul>
+
+<h5 class = "insp_quote">Random Inspirational Quote: {{quote}}</h5>
+
+<script>
+  function searchName() {
+    /*Get the names of all the albums*/
+    let all_vals = list_of_albums.getElementsByTagName("li");
+    /*Get the current input from the search bar*/
+    let curr_val = document.getElementById("search_bar").value;
+    /*If someone is typing in the search bar*/
+    if(curr_val != "") {
+      for(let i = 0; i < all_vals.length; i++) {
+        if(curr_val.length > all_vals[i].id.length) {
+          hideElement(all_vals[i]);
+        } else if (curr_val.toUpperCase() == all_vals[i].id.toUpperCase()) {
+          showElement(all_vals[i]);
+        } else if (curr_val.toUpperCase() == all_vals[i].id.substring(0, curr_val.length).toUpperCase()) {
+          showElement(all_vals[i]);
+        } else {
+          hideElement(all_vals[i]);
+        }
+      }
+    } else {
+      showAllElements();
+    }
+  }
+
+  /*Helper function used to hide elements*/
+  function hideElement(x) {
+    x.style.display = "none";
+  }
+
+  /*Helper function used to show an element*/
+  function showElement(x) {
+    x.style.display = "list-item";
+  }
+
+  /*Helper function used to display all elements*/
+  function showAllElements() {
+    let all_elements = list_of_albums.getElementsByTagName("li");
+    for(let j = 0; j < all_elements.length; j++) {
+      showElement(all_elements[j]);
+    }
+  }
+
+  let search = document.getElementById("search_bar");
+  let total_albums = document.getElementById("list_of_albums");
+  $("#search_bar").keyup(searchName);
+
+</script>

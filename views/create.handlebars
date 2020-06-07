@@ -1,0 +1,46 @@
+<h1>Create a New Album Review</h1>
+<article>
+  <form method = "POST" action = "/api/albums">
+    <div class = "input-field">
+      <label>Album Name</label>
+      <input type="text" name="album_name" size="50" placeholder="Album Name">
+    </div>
+    <div class = "input-field">
+      <label>Artist</label>
+      <input type="text" name="artist" size="50" placeholder="Artist">
+    </div>
+    <div class = "input-field">
+      <label>Year Released</label>
+      <input type="number" name="year_released" size="50" placeholder="Release Year">
+    </div>
+    <div class = "input-field">
+      <label>Genre</label>
+      <input type="text" name="genre" size="50" placeholder="Genre">
+    </div>
+    <div class = "input-field">
+      <label>Standout Tracks</label>
+      <input type="text" name="standout_tracks" size="50" placeholder="Track1,Track2,Track3 (Seperate by Commas)">
+    </div>
+    <div class = "input-field">
+      <label>Rating</label>
+      <input type="number" name="rating" size="50" placeholder="Rating out of 100">
+    </div>
+    <div class = "input-field">
+      <label>Review</label>
+      <textarea type = "text" name = "review" rows = "10" placeholder="Write your review here"></textarea>
+    </div>
+    <div class = "input-field">
+      <label>Reviewer Name</label>
+      <textarea type="text" name="reviewer_name" size="50" placeholder="e.g. John Doe"></textarea>
+    </div>
+    <div class = "input-field">
+      <label>Date of Review</label>
+      <textarea type="text" name="review_date" size="50" placeholder="12/12/2020"></textarea>
+    </div>
+    <div class = "input-field">
+      <label>Reviewer's Email</label>
+      <textarea type="text" name="reviewer_email" size="50" placeholder="johndoe@umd.edu"></textarea>
+    </div>
+    <button type = "submit">Create Album Review</button>
+  </form>
+</article>

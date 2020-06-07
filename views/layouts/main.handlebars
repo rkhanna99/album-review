@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang ="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+  <title>Final Project</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+</head>
+
+
+<body>
+  <div class = "container">
+    <h1 id = "main_title">Album Reviews</h1>
+    <div class="nav">
+      <div>
+        <a href="/R&B">R&B/Soul</a>
+        <a href="/Hip-Hop">Hip-Hop/Rap</a>
+        <a href="/90rated">Albums Rated 90+</a>
+        <a href="/Alphabetical">Alphabetical</a>
+        <a href="/2020">Released in 2020</a>
+        <a href="/popularsongs">Popular Songs</a>
+        <a href="/chat">Chat Room</a>
+        <a href="/aboutme">About me</a>
+      </div>
+    </div>
+
+    {{{body}}}
+  </div>
+
+  <div class = "container">
+    <script src = "/socket.io/socket.io/js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      var socket = io();
+      $('#c_box').submit(function() {
+        socket.emit('chat message', $('#c_m').val);
+        $('#c_m').val('');
+        return false;
+      });
+      socket.on('chat message', function(message){
+        $('#list_messages').append($('<li id = "result_message">').text(message));
+      });
+    </script>
+  </div>
+</body>
+
+</html>
