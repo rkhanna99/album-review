@@ -25,6 +25,7 @@ mongoose.connection.on('error', function() {
 
 // Setup Express App
 var app = express();
+var PORT = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('handlebars', exphbs({
@@ -249,6 +250,6 @@ app.get('/aboutme', function(req, res) {
 
 
 /*Listen on port 3000*/
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || PORT, function() {
     console.log('Listening!');
 });
