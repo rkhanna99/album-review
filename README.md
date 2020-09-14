@@ -1,86 +1,162 @@
-# Final Project
-#### Out: 4/13/20 | Deadline: 5/12/20 11:59 PM
+# Album Reviews
 
-### Overview
+---
 
-In this project, you will work on a project to tie together everything you have learned up to now in the semester.
+Name: Rahul Khanna
 
-### Objectives
+Date: 5/11/2020
 
-The purpose of this project is to create a fully functioning **"real-time application"**.
+Project Topic: Reviewing Music
 
-This project is largely open ended. The only requirement is to satisfy all parts of the `Specifications` section below, which are broad and flexible. Outside of that, you are free to be creative and make something you are proud of. You may choose to do the same topic as you did for your midterm, or choose something different.
+URL: I couldn't get Heroku to work so I'm just using submit server
 
-### Grading
-
-You fill submit both the application source as well as a `documentation.md` file that documents how you implemented each part of the project.
-
-Grading will be done using the `documentation.md` file to test your application.
-
-Each specificiation has two types of requirements:
-- (REQ): These are requirements **must** be followed. Failue to do so can result in up to 50% point deductions for the entire project.
-- (X pt): These specifications are worth X points.
+---
 
 
-### Specifications
+### 1. Data Format and Storage
 
+- For this project I stored data using MongoDB
+- I had a total of 3 Schemas
 
-1. **Fulfillment of Midterm Project Requirements**
+albumReviewSchema:
+```javascript
+{
+  album_name: String,
+  artist: String,
+  year_released: Number,
+  genre: String,
+  standout_tracks: [String],
+  rating: Number,
+  review: String,
+  review_info: reviewInfoSchema
+}
+```
 
-    - (REQ) (50 pt) Data should be stored using MongoDB, instead of similar to how the Pokemon API and the blog engine was set up
-    - Have at least 2 different schemas
+albumReviewSchema:
+```javascript
+{
+  album_name: String,
+  artist: String,
+  year_released: Number,
+  genre: String,
+  standout_tracks: [String],
+  rating: Number,
+  review: String,
+  review_info: reviewInfoSchema
+}
+```
 
+reviewInfoSchema:
+```javascript
+{
+  reviewer_name: String,
+  review_date: String,
+  reviewer_email: String
+}
+```
 
-2. **Live Updates**
+reviewInfoSchema:
+```javascript
+{
+  reviewer_name: String,
+  review_date: String,
+  reviewer_email: String
+}
+```
 
-    Users will need to be able to add data to your local storage, and have live updates and a notification system.
+popularSongsSchema:
+```javascript
+{
+  song_name: String,
+  song_artist: String,
+  song_genre: String
+}
+```
 
-    - (10 pt) Incorporate sockets.
+### 2. Add New Data/API
 
-3. **View Data**
+HTML form route album review: `/create`
 
-    Users should be able to view all data in two ways:
+HTML form route popular song: `/createSong`
 
-    - (REQ) The HTML pages should be generated using Handlebars
-    - (10 pt) Handlebars.js should be used to generate at least 5 pages,
-              including a form submission page for your respective entity
-    - (5 pt) Have a (6th) description about page, which includes your name
-        and description of the application.
+POST endpoint route album review: `/api/albums`
 
-4. **API**
+POST endpoint route popular song: `/api/songs`
 
-    Use express.js to have at least 8 different endpoints
+DELETE endpoint album review(By album_name): `/api/deletealbum`
 
-    - (10 pt) At least 2 post endpoints
-    - (10 pt) At least 2 delete endpoints
+DELETE endpoint popular song(By song_name): `/api/deletesong`
 
-4. **Modules**
+Example Node.js POST request to endpoint:
+```javascript
+var request = require("request");
 
-    Create at least 1 module (to separate functionality from backend API functionality)
+var options = {
+    method: 'POST',
+    url: 'http://localhost:3000/api/...',
+    headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+    },
+    form: {
+      album_name:'After Hours',
+      artist:'The Weeknd',
+      year_released:2020,
+      genre:'R&B/Soul',
+      standout_tracks:[
+         "Hardest to Love",
+         "Escape from LA",
+         "Faith",
+         "Blinding Lights",
+         "In Your Eyes",
+         "After Hours"
+      ],
+      rating:89,
+      review:"<p>Abel Tesfaye finally delivers on his long-running vision, leveraging a self-loathing villain into an irresistible, cinematic narrative with his most satisfying collision of new wave, dream pop, and R&B.</p>",
+      review_info:{reviewer_name: 'Rahul Khanna', review_date: '05/02/2020', reviewer_email: 'rkhanna@umd.edu'}
+    }
+};
 
-    - (15 pt) Create at least 1 module
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
 
-5. **NPM Packages**
+  console.log(body);
+});
+```
 
-    - (15 pt) Use 2 new npm packages that we have not used before
+### 3. View Data
 
-6. **User Interface**
+GET endpoint route: `/api/getallreviews`
 
-    - (10 pt) Make it look nice
+### 4. Search Data
 
-7. **Deployment**
+Search Field: album_name
 
-    - (5 pt) Deploy to the web (either Heroku or Now) - If you can't figure out
-    deployment, email us and we'll figure something out
+### 5. View Data/Navigation Pages/Chat Room
 
-8. **README**
+Navigation Filters
+1. R&B/Soul -> `/R&B`
+2. Hip-Hop/Rap -> `/Hip-Hop`
+3. Albums Rated 90+ -> `/90rated`
+4. Alphabetical -> `/Alphabetical`
+5. Released in 2020 -> `/2020`
+6. Popular Songs -> `/popularsongs`
+7. Chat Room -> `/chat`
+8. About Me -> `/aboutme`
 
-    - (5 pt) Create a README with all the specifications
+### 6. Modules
 
-### Submission
+- I created a directory called utilities and in that I have a file called helper.js which
+has a function that I use for sorting the albums in alphabetical order.
 
-We will be Heroku [Heroku](http://heroku.com) to submit one link per project.
+### 7. NPM Packages
 
-At the top of your project, include the **Heroku link** (ex: https://myapp.herokuapp.com) at the top of your `documentation.md` file.
+- The 2 NPM packages I used were validator and inspirational-quote. Specifically for
+inspirational-quote you can see it being used at the bottom of the home page where a
+random inspirational quote is printed. There is also a random inspirational quote printed
+in the about me page.
 
-Submit just the `documentation.md` file to the submit server.
+### 8. Live Updates
+
+- I attempted to use Live updates, the code can be seen in index.js, main.handlebars, and
+chat.handlebars.
+
