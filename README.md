@@ -55,15 +55,6 @@ reviewInfoSchema:
 }
 ```
 
-reviewInfoSchema:
-```javascript
-{
-  reviewer_name: String,
-  review_date: String,
-  reviewer_email: String
-}
-```
-
 popularSongsSchema:
 ```javascript
 {
