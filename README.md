@@ -32,20 +32,6 @@ albumReviewSchema:
 }
 ```
 
-albumReviewSchema:
-```javascript
-{
-  album_name: String,
-  artist: String,
-  year_released: Number,
-  genre: String,
-  standout_tracks: [String],
-  rating: Number,
-  review: String,
-  review_info: reviewInfoSchema
-}
-```
-
 reviewInfoSchema:
 ```javascript
 {
