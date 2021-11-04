@@ -8,7 +8,7 @@ Date: 5/11/2020
 
 Project Topic: Reviewing Music
 
-URL: I couldn't get Heroku to work so I'm just using submit server
+URL: Heroku link is down
 
 ---
 
