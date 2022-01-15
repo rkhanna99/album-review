@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "inspirational-quotes": "^1.0.8",
-    "marked": "^1.0.0",
+    "marked": "^4.0.10",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.12",
     "morgan": "^1.10.0",
