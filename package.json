@@ -13,7 +13,7 @@
     "@handlebars/allow-prototype-access": "^1.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.4",
+    "express-handlebars": "^5.3.1",
     "inspirational-quotes": "^1.0.8",
     "marked": "^1.0.0",
     "mongodb": "^3.5.7",
